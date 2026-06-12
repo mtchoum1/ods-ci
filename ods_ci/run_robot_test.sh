@@ -402,16 +402,7 @@ if [[ ! -d "${TEST_ARTIFACT_DIR}" ]]; then
   mkdir -p "${TEST_ARTIFACT_DIR}"
 fi
 if ! ${SUBFOLDER}; then
-  case "$(uname -s)" in
-    Darwin)
-        # shellcheck disable=SC2046
-        TEST_ARTIFACT_DIR=$(mktemp -d  "${TEST_ARTIFACT_DIR}" -t "${TEST_ARTIFACT_DIR}"/ods-ci-$(date +%Y-%m-%d-%H-%M)-XXXXXXXXXX)
-         ;;
-    Linux)
-        # shellcheck disable=SC2046
-        TEST_ARTIFACT_DIR=$(mktemp -d -p "${TEST_ARTIFACT_DIR}" -t ods-ci-$(date +%Y-%m-%d-%H-%M)-XXXXXXXXXX)
-        ;;
-  esac
+  TEST_ARTIFACT_DIR=$(mktemp -d "${TEST_ARTIFACT_DIR}/ods-ci-$(date +%Y-%m-%d-%H-%M)-XXXXXXXXXX")
 fi
 
 
